@@ -1,0 +1,84 @@
+@media screen and (min-width:769px){
+    html {
+        font-size: 1rem;
+    }
+    
+    html, body, .container {
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    .col {
+        height: 60px;
+        border: 1px solid lightgray;
+        font-size: 2rem;
+    }
+    
+    .row.header {
+        /* background-color: rgb(150, 117, 206); */
+        height: 5%;
+        min-height: 48px;
+        color: white;
+        font-size: 1rem;
+        margin-bottom: 1%;
+        box-sizing: border-box;
+    }
+    
+    .calendarBody {
+        height: 90%;
+        font-size: 1rem;
+        margin-bottom: 1%;
+        box-sizing: border-box;
+    }
+    
+    .row.header>div {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .today {
+        background-color: greenyellow;
+    }
+    
+    .row.currentMonthRow{
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+    
+    .row.currentMonthRow span{
+        font-size: 2rem;
+        margin: 0 30px;
+    }
+    
+    #currentMonth, #currentYear{
+        font-size: 2rem;
+    }
+    
+    .lunarDate{
+        font-size: 0.7rem;
+        margin-top: -8%;
+        font-style: italic;
+    }
+
+    .statHolidayName{
+        font-size: 0.7rem;
+        margin-top: -8%;
+        font-style: italic;
+    }
+    
+    .previousMonth, .nextMonth {
+        border: none;
+        text-decoration: none;
+        font-size:  1rem;
+        border-radius: 5px;
+        height: 30px;
+        align-items: center;
+        display: flex;
+    }
+}

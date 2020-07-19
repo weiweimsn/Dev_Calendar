@@ -1,0 +1,34 @@
+/* extra small devices - screen width less than 576px */
+@media screen and (max-width: 576px) {
+    html {
+        font-size: 0.5rem;
+    }
+    .row.currentMonthRow{
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+    }
+    .col {
+        font-size: 1rem;
+        height: 70px;
+        max-width: 14%;
+    }
+    .lunarDate, .statHolidayName{
+        font-size: 0.6rem;
+        margin-top: 15%;
+        font-style: italic;
+    }
+    .row.currentMonthRow{
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+    }
+
+    .calendarBody{
+        /* margin-left: 23px; */
+    }
+
+    .row.header{
+        margin-left: 8px;
+    }
+}

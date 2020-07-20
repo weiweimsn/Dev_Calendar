@@ -1,6 +1,7 @@
 import CanadaStatHolidays from '../libs/CanadaStatHolidays';
 import Lunar from '../libs/lunarCalendar';
 import Birthdays from '../libs/birthdays';
+import ImportantDays from "../libs/ImportantDays";
 
 // make date a string type so it is compatible with invalid date
 var currentDate = "";
@@ -61,7 +62,7 @@ function renderCalendarDays(date) {
         if ((startIndex - 5) % 7 === 0 || (startIndex - 6) % 7 === 0) {
             span.style.color = "red";
         }
-        // if today is a stat holiday or observed stat holiday, make it red
+        // if today is a stat holiday or reserved stat holiday, make it red
         count = count < 10 ? "0" + count : count.toString();
         month = month < 10 ? "0" + month : month.toString();
         if (holidays.indexOf(year.toString() + month + count) > -1) {
@@ -77,6 +78,7 @@ function renderCalendarDays(date) {
         let isBirthday = checkBirthdays(birthdays, month + count);
 
         const statHolidayName = getStatHolidayNameByDate(year.toString() + month + count);
+        const importantDayName = getImportantDayNameByDate(month + count);
 
         if (isBirthday) {
             lunarDate.innerHTML = birthdays[month + count];
@@ -87,6 +89,11 @@ function renderCalendarDays(date) {
         else if (holidays.indexOf(year.toString() + month + count) > -1 && statHolidayName !== "") {
             lunarDate.innerHTML = statHolidayName;
             lunarDate.className = "statHolidayName";
+            lunarDate.style.color = "red";
+        }
+
+        else if (importantDayName !== ""){
+            lunarDate.innerHTML = importantDayName;
             lunarDate.style.color = "red";
         }
 
@@ -285,8 +292,8 @@ function updateStatHolidays(year) {
     statHolidays = CanadaStatHolidays.getStatHolidays(year);
     for (var i = 0; i < statHolidays.length; i++) {
         // holidays.push(statHolidays[i].id);
-        if (statHolidays[i].observedDate) {
-            tempHolidays.push(statHolidays[i].observedDate);
+        if (statHolidays[i].reservedDate) {
+            tempHolidays.push(statHolidays[i].reservedDate);
         }
         // else {
         //     tempHolidays.push(statHolidays[i].id);
@@ -304,6 +311,19 @@ function getStatHolidayNameByDate(dateInString) {
         if (statHoliday.id === dateInString) {
             // if (statHoliday.id === dateInString) {
             return statHoliday.name;
+        }
+    }
+    return "";
+}
+
+function getImportantDayNameByDate(dateInString) {
+    if (!ImportantDays) return "";
+
+    for (var i = 0; i < ImportantDays.length; i++) {
+        const importantDay = ImportantDays[i];
+        if (importantDay.date === dateInString) {
+            // if (statHoliday.id === dateInString) {
+            return importantDay.name;
         }
     }
     return "";

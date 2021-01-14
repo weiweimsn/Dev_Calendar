@@ -68,7 +68,7 @@ var Lunar = {
     },
     //农历月份天数
     lunarMonthDays: function (year, month) {
-        var monthData = this.lunarMonths(year);
+        var [monthData, ...rest] = this.lunarMonths(year)
         return monthData[month - 1];
     },
     //农历月份天数数组
@@ -89,7 +89,7 @@ var Lunar = {
         for (var i = 0; i < months.length; i++) {
             months[i] = +months[i] + 29;
         }
-        return months;
+        return [months, leapMonth];
     },
     //农历每年的天数
     //@param year 农历年份
@@ -100,7 +100,7 @@ var Lunar = {
     },
     //
     lunarYearMonths: function (year) {
-        var monthData = this.lunarMonths(year);
+        var [monthData, ...rest] = this.lunarMonths(year);
         var res = [];
         var temp = 0;
         var yearData = this.lunarInfo[year - this.MIN_YEAR];
@@ -122,13 +122,14 @@ var Lunar = {
     },
     //计算农历日期与正月初一相隔的天数
     betweenLunarDays: function (year, month, day) {
-        var yearMonth = this.lunarMonths(year);
-        var res = 0;
-        for (var i = 1; i < month; i++) {
-            res += yearMonth[i - 1];
+        var [yearMonth, leapMonth] = this.lunarMonths(year);
+        var result = 0;
+        var count = leapMonth > 0 && leapMonth < month ? month + 1 : month; // count is to adjust leap month in a year, if there is a leap month and the leap month is before the target month, target month should be added by 1 to get the accurate month
+        for (var i = 1; i < count; i++) {
+            result += yearMonth[i - 1];
         }
-        res += day - 1;
-        return res;
+        result += day - 1;
+        return result;
     },
     //计算2个阳历日期之间的天数
     //@param year 阳历年

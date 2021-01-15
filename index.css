@@ -3,18 +3,17 @@
 @import './css/xsdevice-index.css';
 @import './css/xssdevice-index.css';
 
-html {
-    font-size: 1rem;
-}
-
 html, body, .container {
     height: 100%;
     margin: 0 auto;
     padding: 0;
 }
 
+body{
+}
+
 .row{
-    width: 100%;
+    justify-content: center;
 }
 
 .col {
@@ -23,20 +22,11 @@ html, body, .container {
 }
 
 .row.header {
-    /* background-color: rgb(150, 117, 206); */
-    height: 5%;
-    min-height: 48px;
     color: white;
-    font-size: 1rem;
-    margin-bottom: 1%;
-    box-sizing: border-box;
 }
 
 .calendarBody {
     height: auto;
-    font-size: 1rem;
-    margin-bottom: 1%;
-    box-sizing: border-box;
 }
 
 .calendarBody .col{

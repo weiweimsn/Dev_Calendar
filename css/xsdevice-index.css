@@ -1,15 +1,27 @@
 /* extra small devices - screen width less than 576px */
 @media screen and (max-width: 576px) {
     html {
-        font-size: 0.5rem;
+        font-size: 1rem;
     }
     .row.currentMonthRow{
+        display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1rem;
+        font-size: 2rem;
+        box-sizing: content-box;
+    }
+
+    .row.header{
+        display: flex;
+        justify-content: center;
+        justify-content: center;
+    }
+
+    .calendarBody{
+        margin:  0 auto;
+        font-size: 0.8em;
     }
     .col {
-        font-size: 1rem;
         height: 70px;
         max-width: 14%;
     }
@@ -17,18 +29,5 @@
         font-size: 0.6rem;
         margin-top: 15%;
         font-style: italic;
-    }
-    .row.currentMonthRow{
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-    }
-
-    .calendarBody{
-        /* margin-left: 23px; */
-    }
-
-    .row.header{
-        margin-left: 8px;
     }
 }

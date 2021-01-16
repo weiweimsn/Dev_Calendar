@@ -2,10 +2,12 @@
 @import "./css/smdevice-index.css";
 @import "./css/xsdevice-index.css";
 @import "./css/xssdevice-index.css"; */
-@import "./css/xssdevice-index.css";
+@import "./css/xxsdevice-index.css";
 @import "./css/xsdevice-index.css";
 @import "./css/smdevice-index.css";
 @import "./css/mddevice-index.css";
+@import "./css/lgdevice-index.css";
+@import "./css/xxxsdevice-index.css";
 
 html,
 body,

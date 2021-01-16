@@ -1,4 +1,4 @@
-@media screen and (min-width: 769px) and (max-width: 1023px) {
+@media screen and (min-width: 1024px) {
   html {
     font-size: 1rem;
   }
@@ -14,7 +14,6 @@
   .col {
     border: 1px solid lightgray;
     font-size: 2rem;
-    max-width: 14.2% !important;
   }
 
   .row.header {
@@ -81,6 +80,5 @@
 
   .container {
     margin: 0 auto;
-    max-width: 100%;
   }
 }

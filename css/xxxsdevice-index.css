@@ -1,5 +1,5 @@
-/* small devices - screen width equal to or greater than 576px, but less then 768px */
-@media screen and (max-width: 768px) and (min-width: 577px) {
+/* extra small devices - screen width less than 420px */
+@media screen and (max-width: 320px) {
   html {
     font-size: 1rem;
   }
@@ -15,6 +15,11 @@
   .row.header {
     display: flex;
     justify-content: flex-start;
+    /* max-width: 14.3%;
+    flex-flow: row; */
+  }
+  .row.header div {
+    max-width: 14.27%;
   }
   .row {
     display: flex;
@@ -24,10 +29,12 @@
   .col {
     font-size: 1.5rem;
     padding: 0;
+    height: 60px;
   }
   .lunarDate,
   .statHolidayName {
     font-size: 0.6rem;
+    margin-top: 10%;
     font-style: italic;
   }
 
@@ -42,7 +49,7 @@
   }
 
   .row.currentMonthRow span {
-    font-size: 2rem;
-    margin: 20px 30px;
+    font-size: 1.5rem;
+    margin: 10px 15px;
   }
 }

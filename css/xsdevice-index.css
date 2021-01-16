@@ -1,33 +1,39 @@
 /* extra small devices - screen width less than 576px */
 @media screen and (max-width: 576px) {
-    html {
-        font-size: 1rem;
-    }
-    .row.currentMonthRow{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        box-sizing: content-box;
-    }
+  html {
+    font-size: 1rem;
+  }
 
-    .row.header{
-        display: flex;
-        justify-content: center;
-        justify-content: center;
-    }
+  .row.currentMonthRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-sizing: content-box;
+  }
 
-    .calendarBody{
-        margin:  0 auto;
-        font-size: 0.8em;
-    }
-    .col {
-        height: 70px;
-        max-width: 14%;
-    }
-    .lunarDate, .statHolidayName{
-        font-size: 0.6rem;
-        margin-top: 15%;
-        font-style: italic;
-    }
+  .row.header {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .calendarBody {
+    margin: 0 auto;
+    font-size: 0.8em;
+  }
+  .col {
+    height: 60px !important;
+    max-width: 13.8% !important;
+  }
+  .lunarDate,
+  .statHolidayName {
+    font-size: 0.8rem !important;
+    margin-top: 15%;
+    font-style: italic;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 100%;
+  }
 }

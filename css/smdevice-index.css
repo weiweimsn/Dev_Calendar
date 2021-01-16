@@ -1,28 +1,36 @@
 /* small devices - screen width equal to or greater than 576px, but less then 768px */
-@media  screen and (max-width: 768px) {
-    html {
-        font-size: 0.5rem;
-    }
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 0.5rem;
+  }
 
-    .col {
-        font-size: 1.5rem;
-        height: 70px;
-        max-width: 15%;
-        padding: 0;
-    }
+  .col {
+    font-size: 2.5rem;
+    height: 70px;
+    max-width: 13.8%;
+  }
 
-    .row.currentMonthRow{
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-    }
+  .row.currentMonthRow {
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+  }
 
-    .lunarDate, .statHolidayName{
-        font-size: 0.6rem;
-        margin-top: 10%;
-        font-style: italic;
-    }
-    .row.currentMonthRow span{
-        margin: 0 30px;
-    }
+  .lunarDate,
+  .statHolidayName {
+    font-size: 1rem;
+    margin-top: 10%;
+    font-style: italic;
+  }
+  .row.currentMonthRow span {
+    margin: 0 30px;
+  }
+  .row {
+    justify-content: flex-start;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 100%;
+  }
 }

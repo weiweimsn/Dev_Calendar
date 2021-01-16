@@ -12,7 +12,6 @@
   }
 
   .col {
-    height: 70px;
     border: 1px solid lightgray;
     font-size: 2rem;
     max-width: 14.1% !important;
@@ -61,13 +60,11 @@
 
   .lunarDate {
     font-size: 0.7rem;
-    margin-top: -8%;
     font-style: italic;
   }
 
   .statHolidayName {
     font-size: 0.7rem;
-    margin-top: -8%;
     font-style: italic;
   }
 

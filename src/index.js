@@ -335,7 +335,13 @@ function findAllBirthdays() {
     for (let i = 0; i < Birthdays.length; i++) {
         var birthday = Birthdays[i];
         if (birthday.isLunar) {
-            let solarDays = Lunar.toSolar(year, parseInt(birthday.date.substr(0, 2)), parseInt(birthday.date.substr(2, 2)));
+            let lunarMonth = parseInt(birthday.date.substr(0, 2));
+            let lunarDay = parseInt(birthday.date.substr(2, 2));
+            let lunarYear = year;
+            if(lunarMonth >= 6 && currentDate.getMonth() < 6){
+                lunarYear = year - 1;
+            }
+            let solarDays = Lunar.toSolar(lunarYear, lunarMonth, lunarDay);
             let month = solarDays[1] < 10 ? "0" + solarDays[1] : solarDays[1].toString();
             let day = solarDays[2] < 10 ? "0" + solarDays[2] : solarDays[2].toString();
             days[month + day] = birthday.name;

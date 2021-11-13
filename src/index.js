@@ -81,7 +81,8 @@ function renderCalendarDays(date) {
 
         var stockTradeSign = document.createElement("img");
 //        stockTradeSign.src="../public/dist/imgs/NoStockTradeSign.png";
-        stockTradeSign.src="imgs/NoStockTradeSign.png";
+        //stockTradeSign.src="imgs/NoStockTradeSign.png";
+        stockTradeSign.src="./public/dist/imgs/NoStockTradeSign.png";
         
         let usStockMarketStatus = checkUSStockMarketStatus(year,month, count);
         if(usStockMarketStatus  && usStockMarketStatus.isClosed){

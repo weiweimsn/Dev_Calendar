@@ -1,7 +1,9 @@
-import CanadaStatHolidays from '../libs/CanadaStatHolidays';
+//import CanadaStatHolidays from '../libs/CanadaStatHolidays';
+import AlbertaStatHolidays from '../libs/AlbertaStatHolidays';
 import Lunar from '../libs/lunarCalendar';
 import Birthdays from '../libs/birthdays';
 import ImportantDays from "../libs/ImportantDays";
+import USStockClosedOrHalfClosedDay from "../libs/USStockClosedOrHalfClosedDay";
 
 // make date a string type so it is compatible with invalid date
 var currentDate = "";
@@ -58,6 +60,7 @@ function renderCalendarDays(date) {
         span.classList.add('font-weight-bold');
         span.classList.add('text-center');
         span.innerText = count;
+
         // if today is Saturday or Sunday, make it red
         if ((startIndex - 5) % 7 === 0 || (startIndex - 6) % 7 === 0) {
             span.style.color = "red";
@@ -73,6 +76,23 @@ function renderCalendarDays(date) {
         var lunarDate = document.createElement('div');
         lunarDate.className = 'lunarDate';
         const lunarInfo = Lunar.toLunar(year, month, count);
+
+        // check US stock market status
+
+        var stockTradeSign = document.createElement("img");
+//        stockTradeSign.src="../public/dist/imgs/NoStockTradeSign.png";
+        stockTradeSign.src="imgs/NoStockTradeSign.png";
+        
+        let usStockMarketStatus = checkUSStockMarketStatus(year,month, count);
+        if(usStockMarketStatus  && usStockMarketStatus.isClosed){
+            stockTradeSign.classList.add("noStockTrading");
+            span.appendChild(stockTradeSign);
+        }
+        else if(usStockMarketStatus && usStockMarketStatus.isHalfClosed){
+            stockTradeSign.classList.add("halfDayStockTrading");
+            span.appendChild(stockTradeSign);
+        }
+
 
         // check if birthdays
         let isBirthday = checkBirthdays(birthdays, month + count);
@@ -289,7 +309,7 @@ function updateStatHolidays(year) {
     statHolidays = [];
     var tempHolidays = [];
 
-    statHolidays = CanadaStatHolidays.getStatHolidays(year);
+    statHolidays = AlbertaStatHolidays.getStatHolidays(year);
     for (var i = 0; i < statHolidays.length; i++) {
         // holidays.push(statHolidays[i].id);
         if (statHolidays[i].reservedDate) {
@@ -363,6 +383,12 @@ function checkBirthdays(birthdays, targetDay) {
     else {
         return false;
     }
+}
+
+function checkUSStockMarketStatus(year,month, day){
+    var date = year.toString() + month + day;
+    var item = USStockClosedOrHalfClosedDay.find(s => s.date === date);
+    return item;
 }
 
 String.prototype.getYear= function(){

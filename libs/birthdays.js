@@ -5,7 +5,13 @@ var Birthdays = (function(){
     let XieZhiQiBirthday = {date: '1124', isLunar: false, name: '谢芷琪生日'};
     let MyMomBirthday = {date: '0223', isLunar: true, name: '邢春霞生日'}; // 19650325 is solar day
     let WeiJianliBirthday = {date: '0319', isLunar: true, name: '魏建立生日'};
+
+    /*
+        
+    */
     let WaiGongBirthday = {date: '0826', isLunar: true, name: '邢金权生日'}; // 1943 is the year  下午2点
+
+
     let WaiPoBirthday = {date: '1113', isLunar: true, name: '刘路琴生日'}; // 1946 晚上11点
     let JingJingBirthday = {date: '1215', isLunar: true, name: '靖晶生日'}; // 1992年
     let XingChunhuiBirthday = {date: '1229', isLunar: true, name: '邢春会生日'}; // 1967年

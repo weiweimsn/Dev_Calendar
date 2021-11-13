@@ -81,4 +81,22 @@
   .container {
     margin: 0 auto;
   }
+
+  .noStockTrading{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+
+  .halfDayStockTrading{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    clip:rect(0,20px,10px,0px);
+  }
+  
 }

@@ -2,10 +2,10 @@
 var CanadaStatHolidays = {
     statHolidays: [],
     getStatHolidays: function (year, province = "Ontario") {
-        
+
         // empty stat holidays
         this.statHolidays.length = 0;
-        
+
         this.statHolidays.push(this.getNewYearsDay(year));
         this.statHolidays.push(this.getFamilyDay(year));
         this.statHolidays.push(this.getGoodFriDay(year));
@@ -36,10 +36,10 @@ var CanadaStatHolidays = {
         // Sunday
         else if (weekday === 0) {
             // return [{ '0101': 'New Years Day' }, { '0102': 'New Years Day' }];
-            return { id: year + "0101", name: "New Years", reserved: true, reservedDate: year + "01" + (today + 1)};
+            return { id: year + "0101", name: "New Years", reserved: true, reservedDate: year + "01" + (today + 1) };
         }
         else {
-            return { id: year + "0101", name: "New Years", reserved: false};
+            return { id: year + "0101", name: "New Years", reserved: false };
         }
     },
     getFamilyDay: function (year, province = "Ontario") {
@@ -58,20 +58,20 @@ var CanadaStatHolidays = {
                 return { id: key, name: "Family Day", reserved: false, reservedDate: year + "02" + (today + 15) };
             case 1:
                 key = year + "02" + (today + 14);
-                return { id: key, name: "Family Day", reserved: false};
+                return { id: key, name: "Family Day", reserved: false };
             case 2:
                 key = year + "02" + (today + 20);
-                return { id: key, name: "Family Day", reserved: false};
+                return { id: key, name: "Family Day", reserved: false };
             case 3:
                 key = year + "02" + (today + 19);
-                return { id: key, name: "Family Day", reserved: false};
+                return { id: key, name: "Family Day", reserved: false };
             // Thursday
             case 4:
                 key = year + "02" + (today + 18);
-                return { id: key, name: "Family Day", reserved: false};
+                return { id: key, name: "Family Day", reserved: false };
             case 5:
                 key = year + "02" + (today + 17);
-                return { id: key, name: "Family Day", reserved: false};
+                return { id: key, name: "Family Day", reserved: false };
             case 6:
                 key = year + "02" + (today + 16);
                 return { id: key, name: "Family Day", reserved: false, reservedDate: year + "02" + (today + 16) };
@@ -92,7 +92,7 @@ var CanadaStatHolidays = {
         else {
             var key = year + "0" + month + dayInMonth;
         }
-        return { id: key, name: "Good Friday", reserved: false};
+        return { id: key, name: "Good Friday", reserved: false };
     },
     getVictoriaDay: function (year, province = "Ontario") {
         const date = new Date(year, 4, 24);
@@ -102,26 +102,26 @@ var CanadaStatHolidays = {
         switch (weekday) {
             case 0:
                 key = year + "05" + (today - 6);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             case 1:
                 key = year + "05" + today;
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             case 2:
                 key = year + "05" + (today - 1);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             case 3:
                 key = year + "05" + (today - 2);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             // Thursday
             case 4:
                 key = year + "05" + (today - 3);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             case 5:
                 key = year + "05" + (today - 4);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
             case 6:
                 key = year + "05" + (today - 5);
-                return { id: key, name: "Victoria Day", reserved: false};
+                return { id: key, name: "Victoria Day", reserved: false };
         }
     },
     getCanadaDay: function (year, province = "Ontario") {
@@ -158,28 +158,28 @@ var CanadaStatHolidays = {
         let key;
         switch (weekday) {
             case 0:
-                key = today + 1 < 10? year + "080" + (today + 1) :  year + "08" + (today + 1);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 1 < 10 ? year + "080" + (today + 1) : year + "08" + (today + 1);
+                return { id: key, name: "Civic Day", reserved: false };
             case 1:
                 key = year + "080" + today;
-                key = today < 10? year + "080" + today :  year + "08" + today;
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today < 10 ? year + "080" + today : year + "08" + today;
+                return { id: key, name: "Civic Day", reserved: false };
             case 2:
-                key = today + 6 < 10? year + "080" + (today + 6) :  year + "08" + (today + 6);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 6 < 10 ? year + "080" + (today + 6) : year + "08" + (today + 6);
+                return { id: key, name: "Civic Day", reserved: false };
             case 3:
-                key = today + 5 < 10? year + "080" + (today + 5) :  year + "08" + (today + 5);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 5 < 10 ? year + "080" + (today + 5) : year + "08" + (today + 5);
+                return { id: key, name: "Civic Day", reserved: false };
             // Thursday
             case 4:
-                key = today + 4 < 10? year + "080" + (today + 4) :  year + "08" + (today + 4);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 4 < 10 ? year + "080" + (today + 4) : year + "08" + (today + 4);
+                return { id: key, name: "Civic Day", reserved: false };
             case 5:
-                key = today + 3 < 10? year + "080" + (today + 3) :  year + "08" + (today + 3);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 3 < 10 ? year + "080" + (today + 3) : year + "08" + (today + 3);
+                return { id: key, name: "Civic Day", reserved: false };
             case 6:
-                key = today + 2 < 10? year + "080" + (today + 2) :  year + "08" + (today + 2);
-                return { id: key, name: "Civic Day", reserved: false};
+                key = today + 2 < 10 ? year + "080" + (today + 2) : year + "08" + (today + 2);
+                return { id: key, name: "Civic Day", reserved: false };
         }
     },
     getLabourDay: function (year, province = "Ontario") {
@@ -193,27 +193,27 @@ var CanadaStatHolidays = {
         let key;
         switch (weekday) {
             case 0:
-                key = today + 1 < 10? year + "090" + (today + 1) :  year + "09" + (today + 1);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 1 < 10 ? year + "090" + (today + 1) : year + "09" + (today + 1);
+                return { id: key, name: "Labour Day", reserved: false };
             case 1:
-                key = today < 10? year + "090" + today :  year + "09" + today;
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today < 10 ? year + "090" + today : year + "09" + today;
+                return { id: key, name: "Labour Day", reserved: false };
             case 2:
-                key = today + 6 < 10? year + "090" + (today + 6) :  year + "09" + (today + 6);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 6 < 10 ? year + "090" + (today + 6) : year + "09" + (today + 6);
+                return { id: key, name: "Labour Day", reserved: false };
             case 3:
-                key = today + 5 < 10? year + "090" + (today + 5) :  year + "09" + (today + 5);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 5 < 10 ? year + "090" + (today + 5) : year + "09" + (today + 5);
+                return { id: key, name: "Labour Day", reserved: false };
             // Thursday
             case 4:
-                key = today + 4 < 10? year + "090" + (today + 4) :  year + "09" + (today + 4);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 4 < 10 ? year + "090" + (today + 4) : year + "09" + (today + 4);
+                return { id: key, name: "Labour Day", reserved: false };
             case 5:
-                key = today + 3 < 10? year + "090" + (today + 3) :  year + "09" + (today + 3);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 3 < 10 ? year + "090" + (today + 3) : year + "09" + (today + 3);
+                return { id: key, name: "Labour Day", reserved: false };
             case 6:
-                key = today + 2 < 10? year + "090" + (today + 2) :  year + "09" + (today + 2);
-                return { id: key, name: "Labour Day", reserved: false};
+                key = today + 2 < 10 ? year + "090" + (today + 2) : year + "09" + (today + 2);
+                return { id: key, name: "Labour Day", reserved: false };
         }
     },
     getThanksgivingDay: function (year, province = "Ontario") {
@@ -229,26 +229,26 @@ var CanadaStatHolidays = {
         switch (weekday) {
             case 0:
                 key = year + "100" + (today + 8);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             case 1:
                 key = year + "100" + (today + 7);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             case 2:
                 key = year + "10" + (today + 13);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             case 3:
                 key = year + "10" + (today + 12);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             // Thursday
             case 4:
                 key = year + "10" + (today + 11);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             case 5:
                 key = year + "10" + (today + 10);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
             case 6:
                 key = year + "10" + (today + 9);
-                return { id: key, name: "Thanksgiving", reserved: false};
+                return { id: key, name: "Thanksgiving", reserved: false };
         }
     },
 
@@ -283,7 +283,7 @@ var CanadaStatHolidays = {
         var today = date.getDate();
 
         // Saturday or Sunday
-        if (weekday === 6 || weekday=== 0) {
+        if (weekday === 6 || weekday === 0) {
             // return [{ '1226': 'Boxing Day' }, { '1228': 'Boxing Day' }];
             return { id: year + "12" + today, name: "Boxing Day", reserved: true, reservedDate: year + "1228" };
         }

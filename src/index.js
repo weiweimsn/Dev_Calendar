@@ -1,9 +1,8 @@
-//import CanadaStatHolidays from '../libs/CanadaStatHolidays';
-import AlbertaStatHolidays from '../libs/AlbertaStatHolidays';
+import Holidays from "../libs/AlbertaStatHolidays"
 import Lunar from '../libs/lunarCalendar';
 import Birthdays from '../libs/birthdays';
 import ImportantDays from "../libs/ImportantDays";
-import USStockClosedOrHalfClosedDay from "../libs/USStockClosedOrHalfClosedDay";
+// import USStockClosedOrHalfClosedDay from "../libs/USStockClosedOrHalfClosedDay";
 
 // make date a string type so it is compatible with invalid date
 var currentDate = "";
@@ -19,12 +18,12 @@ window.onload = function () {
     preLoad();
     var rowsOfCurrentMonth = CountOfRow(currentDate);
     RenderCalanderFrame(rowsOfCurrentMonth);
-    renderCalendarDays(currentDate); 
+    renderCalendarDays(currentDate);
 }
 
 
 function preLoad() {
-    YearChangeEvent = new CustomEvent('onYearChanged', {"year": currentDate.getYear()});
+    YearChangeEvent = new CustomEvent('onYearChanged', { "year": currentDate.getYear() });
     var prevMonth = document.getElementsByClassName("previousMonth")[0];
     var nextMonth = document.getElementsByClassName("nextMonth")[0];
     currentYear = document.getElementById('currentYear');
@@ -48,7 +47,7 @@ function renderCalendarDays(date) {
     var numberOfDays = new Date(year, month, 0).getDate();
 
     var count = 1;
-    firstDay = firstDay == 0 ? 7: firstDay;
+    firstDay = firstDay == 0 ? 7 : firstDay;
     var startIndex = firstDay + 6;
     var currentDay;
     var gap = firstDay - 1 + 6;
@@ -75,31 +74,31 @@ function renderCalendarDays(date) {
 
         var lunarDate = document.createElement('div');
         lunarDate.className = 'lunarDate';
-        const lunarInfo = Lunar.toLunar(year, month, count);
+        const lunarInfo = Lunar.toLunar(year, parseInt(month), parseInt(count));
 
         // check US stock market status
 
         var stockTradeSign = document.createElement("img");
-//        stockTradeSign.src="../public/dist/imgs/NoStockTradeSign.png";
+        //        stockTradeSign.src="../public/dist/imgs/NoStockTradeSign.png";
         //stockTradeSign.src="imgs/NoStockTradeSign.png";
-        stockTradeSign.src="./public/dist/imgs/NoStockTradeSign.png";
-        
-        let usStockMarketStatus = checkUSStockMarketStatus(year,month, count);
-        if(usStockMarketStatus  && usStockMarketStatus.isClosed){
-            stockTradeSign.classList.add("noStockTrading");
-            span.appendChild(stockTradeSign);
-        }
-        else if(usStockMarketStatus && usStockMarketStatus.isHalfClosed){
-            stockTradeSign.classList.add("halfDayStockTrading");
-            span.appendChild(stockTradeSign);
-        }
+        stockTradeSign.src = "./public/dist/imgs/NoStockTradeSign.png";
+
+        // let usStockMarketStatus = checkUSStockMarketStatus(year, month, count);
+        // if (usStockMarketStatus && usStockMarketStatus.isClosed) {
+        //     stockTradeSign.classList.add("noStockTrading");
+        //     span.appendChild(stockTradeSign);
+        // }
+        // else if (usStockMarketStatus && usStockMarketStatus.isHalfClosed) {
+        //     stockTradeSign.classList.add("halfDayStockTrading");
+        //     span.appendChild(stockTradeSign);
+        // }
 
 
         // check if birthdays
         let isBirthday = checkBirthdays(birthdays, month + count);
 
         const statHolidayName = getStatHolidayNameByDate(year.toString() + month + count);
-        const importantDayName = getImportantDayNameByDate(month + count);
+        // const importantDayName = getImportantDayNameByDate(month + count);
 
         if (isBirthday) {
             lunarDate.innerHTML = birthdays[month + count];
@@ -113,10 +112,10 @@ function renderCalendarDays(date) {
             lunarDate.style.color = "red";
         }
 
-        else if (importantDayName !== ""){
-            lunarDate.innerHTML = importantDayName;
-            lunarDate.style.color = "red";
-        }
+        // else if (importantDayName !== "") {
+        //     lunarDate.innerHTML = importantDayName;
+        //     lunarDate.style.color = "red";
+        // }
 
         else if (lunarInfo[8] !== "") {
             lunarDate.innerHTML = lunarInfo[8];
@@ -127,10 +126,10 @@ function renderCalendarDays(date) {
             lunarDate.innerHTML = lunarInfo[8] === "" ? lunarInfo[5] + ' ' + lunarInfo[6] : lunarInfo[8];
         }
         calendarCell[startIndex].appendChild(lunarDate);
-        if(today <= numberOfDays){
-          calendarCell[today + gap].classList.add('today');  
+        if (today <= numberOfDays) {
+            calendarCell[today + gap].classList.add('today');
         }
-        
+
         currentDay = calendarCell[today + gap];
         count++;
         startIndex++;
@@ -243,7 +242,7 @@ function goToPrevMonth() {
     let year = currentDate.getYear();
     let isYearChanged = false;
 
-    if(prevMonth < 1){
+    if (prevMonth < 1) {
         prevMonth = 12;
         year--;
         isYearChanged = true;
@@ -251,10 +250,10 @@ function goToPrevMonth() {
 
     currentDate = localeDateString = prevMonth.toString() + '/' + day + '/' + year;
 
-    if(isYearChanged){
+    if (isYearChanged) {
         currentYear.dispatchEvent(YearChangeEvent);
     }
-    
+
     var rowsOfCurrentMonth = CountOfRow(localeDateString);
     RenderCalanderFrame(rowsOfCurrentMonth);
     renderCalendarDays(localeDateString);
@@ -267,17 +266,17 @@ function goToNextMonth() {
     let year = currentDate.getYear();
     let isYearChanged = false;
 
-    if(nextMonth > 12){
+    if (nextMonth > 12) {
         nextMonth = 1;
         year++;
         isYearChanged = true;
     }
     currentDate = localeDateString = nextMonth.toString() + '/' + day + '/' + year;
-    
-    if(isYearChanged){
+
+    if (isYearChanged) {
         currentYear.dispatchEvent(YearChangeEvent);
     }
-    
+
     var rowsOfCurrentMonth = CountOfRow(localeDateString);
     RenderCalanderFrame(rowsOfCurrentMonth);
     renderCalendarDays(localeDateString);
@@ -310,7 +309,7 @@ function updateStatHolidays(year) {
     statHolidays = [];
     var tempHolidays = [];
 
-    statHolidays = AlbertaStatHolidays.getStatHolidays(year);
+    statHolidays = Holidays.getStatHolidays(year);
     for (var i = 0; i < statHolidays.length; i++) {
         // holidays.push(statHolidays[i].id);
         if (statHolidays[i].reservedDate) {
@@ -337,18 +336,18 @@ function getStatHolidayNameByDate(dateInString) {
     return "";
 }
 
-function getImportantDayNameByDate(dateInString) {
-    if (!ImportantDays) return "";
+// function getImportantDayNameByDate(dateInString) {
+//     if (!ImportantDays) return "";
 
-    for (var i = 0; i < ImportantDays.length; i++) {
-        const importantDay = ImportantDays[i];
-        if (importantDay.date === dateInString) {
-            // if (statHoliday.id === dateInString) {
-            return importantDay.name;
-        }
-    }
-    return "";
-}
+//     for (var i = 0; i < ImportantDays.length; i++) {
+//         const importantDay = ImportantDays[i];
+//         if (importantDay.date === dateInString) {
+//             // if (statHoliday.id === dateInString) {
+//             return importantDay.name;
+//         }
+//     }
+//     return "";
+// }
 
 function findAllBirthdays() {
     var year = currentDate.getYear();
@@ -359,7 +358,7 @@ function findAllBirthdays() {
             let lunarMonth = parseInt(birthday.date.substr(0, 2));
             let lunarDay = parseInt(birthday.date.substr(2, 2));
             let lunarYear = year;
-            if(lunarMonth >= 6 && currentDate.getMonth() < 6){
+            if (lunarMonth >= 6 && currentDate.getMonth() < 6) {
                 lunarYear = year - 1;
             }
             let solarDays = Lunar.toSolar(lunarYear, lunarMonth, lunarDay);
@@ -386,21 +385,21 @@ function checkBirthdays(birthdays, targetDay) {
     }
 }
 
-function checkUSStockMarketStatus(year,month, day){
-    var date = year.toString() + month + day;
-    var item = USStockClosedOrHalfClosedDay.find(s => s.date === date);
-    return item;
-}
+// function checkUSStockMarketStatus(year, month, day) {
+//     var date = year.toString() + month + day;
+//     var item = USStockClosedOrHalfClosedDay.find(s => s.date === date);
+//     return item;
+// }
 
-String.prototype.getYear= function(){
+String.prototype.getYear = function () {
     return parseInt(this.substr(this.lastIndexOf('/') + 1));
 }
-String.prototype.getMonth = function() {
+String.prototype.getMonth = function () {
     return parseInt(this.substring(0, this.indexOf('/')));
 }
-String.prototype.getToday = function() {
+String.prototype.getToday = function () {
     return parseInt(this.substring(this.indexOf('/') + 1, this.lastIndexOf('/')));
 }
-Date.prototype.getLocaleDateInString = function(){
+Date.prototype.getLocaleDateInString = function () {
     return this.getMonth() + 1 + '/' + this.getDate() + '/' + this.getFullYear()
 }

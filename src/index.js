@@ -5,13 +5,17 @@ import ImportantDays from "../libs/ImportantDays";
 // import USStockClosedOrHalfClosedDay from "../libs/USStockClosedOrHalfClosedDay";
 
 // make date a string type so it is compatible with invalid date
-var currentDate = "";
+var currentDate = new Date();
 var YearChangeEvent;
 var currentYear;
 var statHolidays;
 var holidays = [];
 // var birthdays = findAllBirthdays();
 var birthdays = {};
+
+// save all birthdays with solar days after converting lunar birthdays to solar birthdays
+// Use solarBirthdays as a dictionary
+var solarBirthdays = {};
 
 window.onload = function () {
     currentDate = new Date().getLocaleDateInString();
@@ -23,7 +27,7 @@ window.onload = function () {
 
 
 function preLoad() {
-    YearChangeEvent = new CustomEvent('onYearChanged', { "year": currentDate.getYear() });
+    YearChangeEvent = new CustomEvent('onYearChanged');
     var prevMonth = document.getElementsByClassName("previousMonth")[0];
     var nextMonth = document.getElementsByClassName("nextMonth")[0];
     currentYear = document.getElementById('currentYear');
@@ -95,13 +99,13 @@ function renderCalendarDays(date) {
 
 
         // check if birthdays
-        let isBirthday = checkBirthdays(birthdays, month + count);
+        let isBirthday = checkBirthdays(birthdays, year + month + count);
 
         const statHolidayName = getStatHolidayNameByDate(year.toString() + month + count);
         // const importantDayName = getImportantDayNameByDate(month + count);
 
         if (isBirthday) {
-            lunarDate.innerHTML = birthdays[month + count];
+            lunarDate.innerHTML = birthdays[year + month + count];
             lunarDate.style.color = "red";
             calendarCell[startIndex].classList.add('birthday');
         }
@@ -349,31 +353,62 @@ function getStatHolidayNameByDate(dateInString) {
 //     return "";
 // }
 
+// 当农历生日跨越到第二年时候，整个生日搜索就会报错。这个问题需要明天想想再继续
 function findAllBirthdays() {
     var year = currentDate.getYear();
-    var days = {};
+    // var year = Lunar.toLunar(currentDate.getYear(), currentDate.getMonth(), currentDate.getDate())[0];
+
+    // var days = [];
+
+    var tempDays = {};
+    // if (solarBirthdays.length != 0) {
+    //     for (let i = 0; i < solarBirthdays.length; i++) {
+    //         let keyValuePair = solarBirthdays[i];
+    //         let key = Object.keys(keyValuePair)[0];
+    //         let tempYear = key.substr(0, 4);
+    //         if (tempYear === year.toString()) {
+    //             tempDays.push(keyValuePair);
+    //         }
+    //     }
+    // }
+    if (Object.entries(solarBirthdays).length != 0) {
+        let entries = Object.entries(solarBirthdays);
+        for (let i = 0; i < entries.length; i++) {
+            let tempYear = entries[i][0];
+            if (tempYear.indexOf(year) >= 0) {
+                tempDays[tempYear] = entries[i][1];
+            }
+        }
+    }
+    if (Object.entries(tempDays).length != 0) {
+        solarBirthdays = tempDays;
+    }
+    else {
+        solarBirthdays = {};
+    }
+
     for (let i = 0; i < Birthdays.length; i++) {
-        var birthday = Birthdays[i];
+        let birthday = Birthdays[i];
         if (birthday.isLunar) {
             let lunarMonth = parseInt(birthday.date.substr(0, 2));
             let lunarDay = parseInt(birthday.date.substr(2, 2));
             let lunarYear = year;
-            if (lunarMonth >= 6 && currentDate.getMonth() < 6) {
-                lunarYear = year - 1;
-            }
+
             let solarDays = Lunar.toSolar(lunarYear, lunarMonth, lunarDay);
             let month = solarDays[1] < 10 ? "0" + solarDays[1] : solarDays[1].toString();
             let day = solarDays[2] < 10 ? "0" + solarDays[2] : solarDays[2].toString();
-            days[month + day] = birthday.name;
+
+            solarBirthdays[solarDays[0].toString() + month + day] = birthday.name;
         }
         else {
             let solarDays = [parseInt(birthday.date.substr(0, 2)), parseInt(birthday.date.substr(2, 2))];
             let month = solarDays[0] < 10 ? "0" + solarDays[0] : solarDays[0].toString();
             let day = solarDays[1] < 10 ? "0" + solarDays[1] : solarDays[1].toString();
-            days[month + day] = birthday.name;
+
+            solarBirthdays[year.toString() + month + day] = birthday.name;
         }
     }
-    return days;
+    return solarBirthdays;
 }
 
 function checkBirthdays(birthdays, targetDay) {

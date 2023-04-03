@@ -138,9 +138,11 @@ var Lunar = {
     //@param l_month 阴历正月对应的阳历月份
     //@param l_day  阴历初一对应的阳历天
     betweenSolarDays: function (year, month, day, l_month, l_day) {
-        var time1 = new Date(year + "-" + month + "-" + day).getTime(),
-            time2 = new Date(year + "-" + l_month + "-" + l_day).getTime();
-        return Math.ceil((time1 - time2) / 24 / 3600 / 1000);
+        // var time1 = new Date(year + "-" + month + "-" + day).getTime(),
+        //     time2 = new Date(year + "-" + l_month + "-" + l_day).getTime();
+        var time1 = new Date(`${month}/${day}/${year}`).getTime(),
+            time2 = new Date(`${l_month}/${l_day}/${year}`).getTime();
+        return (time1 - time2) / 24 / 3600 / 1000;
     },
     //根据距离正月初一的天数计算阴历日期
     //@param year 阳历年
